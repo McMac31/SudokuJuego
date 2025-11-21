@@ -2,6 +2,7 @@
 from random import random, randint
 import time
 import json
+import envioApi
 
 class Sudoku:
     def __init__(self):
@@ -61,7 +62,7 @@ class Sudoku:
 
     #Meter numeros aleatorios que no se repitan en indices aleatorios
     def numerosIniciales(self):
-        for i in range(300):#Se pone a 300 para probar mas rapidamente
+        for i in range(27):#Se pone a 300 para probar mas rapidamente
             rellenoAleatorio=randint(1,9)
             filAleatoria=randint(0,8)
             colAleatoria=randint(0,8)
@@ -70,7 +71,7 @@ class Sudoku:
     def crearDiccionario(self):
         datos_estudiante={"nombre":self.nombre,
                           "apellido":self.apellido,
-                          "api_url":"",
+                          "api_url":"http://192.168.25.120:5000/recibir",
                           "sudoku":self.matriz
                           }
         return datos_estudiante
@@ -103,9 +104,7 @@ class Sudoku:
         ███████║███████╗    ██║  ██║╚██████╗██║  ██║██████╔╝╚██████╔╝    ███████╗███████╗    ╚█████╔╝╚██████╔╝███████╗╚██████╔╝╚██████╔╝
         ╚══════╝╚══════╝    ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═════╝  ╚═════╝     ╚══════╝╚══════╝     ╚════╝  ╚═════╝ ╚══════╝ ╚═════╝  ╚═════╝ """)
             datos=self.crearDiccionario()
-            with open("Datos.json","w+") as archivo:
-                json.dump(datos,archivo,indent=4)
-
+            envioApi.enviarPartida(datos)
         
 
 Juego=Sudoku()

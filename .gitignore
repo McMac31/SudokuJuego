@@ -1,0 +1,18 @@
+# --- Basicos de Python ---
+__pycache__/
+*.pyc
+
+
+
+
+mensaje_Enviado.json
+
+
+venv/
+env/
+.venv/
+
+
+.vscode/
+.idea/
+.DS_Store
